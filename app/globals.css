@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FBF6F0;
+  color: #2A2020;
+}
+
+::selection {
+  background-color: #6B1F2E;
+  color: #FBF6F0;
+}
+
+/* Fokus keyboard yang jelas untuk aksesibilitas */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #6B1F2E;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #B08D57, transparent);
+}
