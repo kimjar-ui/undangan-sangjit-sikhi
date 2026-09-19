@@ -12,7 +12,7 @@ export default function EventDetails() {
 
         <div className="flex flex-col items-start gap-6 text-left">
           <p className="font-body text-sm text-ink/70">
-            Sabtu, 01 November 2026
+            Minggu, 01 November 2026
           </p>
 
           <div className="flex items-start gap-3">
