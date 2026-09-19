@@ -25,7 +25,7 @@ const alexBrush = Alex_Brush({
 });
 
 export const metadata: Metadata = {
-  title: "Sikhi & Yuniar — The Sangjit Of",
+  title: "Sikhi & Yuniar — The Sangjit of",
   description: "Dengan penuh syukur, kami mengundang Anda untuk hadir dalam acara Sangjit kami.",
 };
 
