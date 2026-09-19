@@ -1,13 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Redis } from "@upstash/redis";
 import { formatWishWithGemini } from "@/lib/gemini";
 import type { Wish } from "@/lib/types";
 
-// Catatan: penyimpanan dalam memori ini hanya untuk demo.
-// Untuk produksi, ganti dengan database (mis. Supabase, PlanetScale, dsb).
-const wishes: Wish[] = [];
+const redis = new Redis({
+  url: process.env.KV_REST_API_URL!,
+  token: process.env.KV_REST_API_TOKEN!,
+});
+
+const WISHES_KEY = "wishes";
 
 export async function GET() {
-  return NextResponse.json({ wishes: wishes.slice().reverse() });
+  try {
+    const wishes = (await redis.get<Wish[]>(WISHES_KEY)) || [];
+    return NextResponse.json({ wishes: wishes.slice().reverse() });
+  } catch (err) {
+    console.error("Gagal mengambil daftar ucapan:", err);
+    return NextResponse.json({ wishes: [] });
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -40,7 +50,9 @@ export async function POST(req: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    wishes.push(wish);
+    const existing = (await redis.get<Wish[]>(WISHES_KEY)) || [];
+    existing.push(wish);
+    await redis.set(WISHES_KEY, existing);
 
     return NextResponse.json({ success: true, wish });
   } catch (err) {
