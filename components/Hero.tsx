@@ -57,7 +57,7 @@ export default function Hero({
         className="relative z-10 flex flex-col items-center"
       >
         <motion.p variants={item} className="font-body text-xs tracking-wide2 text-gold-light/90">
-          Undangan Sangjit
+          The Sangjit of
         </motion.p>
 
         <motion.div variants={scriptReveal} className="my-6">
