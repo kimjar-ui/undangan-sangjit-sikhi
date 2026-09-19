@@ -22,7 +22,7 @@ export default function Home() {
       <Hero
         groomName="Sikhi Vessabhu"
         brideName="Yuniar Melania"
-        eventDate="Sabtu, 01 November 2026"
+        eventDate="Minggu, 01 November 2026"
       />
 
       <CoupleFeature />
